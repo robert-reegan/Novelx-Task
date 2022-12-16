@@ -9,7 +9,7 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Styles -->
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -429,10 +429,38 @@
                 </svg>
             </div>
 
+            <?php
+            //   dd($cate_list);
+            ?>
+            <form method="post" action="{{route('list.store')}}">
+                @csrf
+                <div class="form-group">
+                    <label for="">Choose Parent Folder</label>
+                    <select id="inputState" name="parent_id" class="form-control">
+                        <option selected>Choose...</option>
+                        <?php foreach ($cate_list as $key => $value) { ?>
+                            <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                        <?php } ?>
+
+                    </select>
+                </div>
+                <div class="form-group mt-2">
+                    <label for="">Enter Sub Folder Name</label>
+                    <input type="text" name="sub_folder_name" class="form-control" id="sub_folder_name" placeholder="">
+                </div>
+                <div class="form-group form-check">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
             <?php echo $list; ?>
 
         </div>
     </div>
 </body>
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+@endpush
 
 </html>

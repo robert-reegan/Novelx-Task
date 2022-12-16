@@ -21,3 +21,4 @@ Route::get('/', function () {
 
 
 Route::get('/view', [ListViewController::class, 'index']);
+Route::post('/store', [ListViewController::class, 'store'])->name('list.store');
